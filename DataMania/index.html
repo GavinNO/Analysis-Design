@@ -3,72 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="stylesheet"  href = "App.css" />
+    <link rel="stylesheet"  href="/css/App.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>datamania</title>
   </head>
   <body>
     <!--<div id="root"></div>-->
+      <button onclick="hideQuestions()">100</button>
     <div class="container">
-      <button onclick="hideQuestions()">100</button>
       <div id = "question">Social media</div>
-      <button onclick="hideQuestions()">100</button>
       <div id = "question">Internet memes</div>
-      <button onclick="hideQuestions()">100</button>
       <div id = "question">CEOs</div>  
-      <button onclick="hideQuestions()">100</button>
       <div id = "question">Gaming</div>
-      <button onclick="hideQuestions()">100</button>
       <div id = "question">Robotics</div>
-      <button onclick="hideQuestions()">100</button>
       <div id = "question">Who created Facebook?</div>  
-      <button onclick="hideQuestions()">100</button>
       <div id = "question">Which NFL football player created and popularized the 'Dab' pose?</div>
-      <button onclick="hideQuestions()">100</button>
       <div id = "question">Who is the CEO of Starlink?</div>
-      <button onclick="hideQuestions()">100</button>
       <div id = "question">Which character is Nintendo most known for creating?</div>
-      <button onclick="hideQuestions()">100</button>
       <div id = "question">What is the show with robots fighting called?</div>
-      <button onclick="hideQuestions()">100</button>
       <div id = "question">S</div>
-      <button onclick="hideQuestions()">100</button>
       <div id = "question">Which site is Pepe the Frog from?</div>
-      <button onclick="hideQuestions()">100</button>
       <div id = "question">C</div>  
-      <button onclick="hideQuestions()">100</button>
       <div id = "question">G</div>
-      <button onclick="hideQuestions()">100</button>
       <div id = "question">R</div>
-      <button onclick="hideQuestions()">100</button>
       <div id = "question">S</div>  
-      <button onclick="hideQuestions()">100</button>
       <div id = "question">I</div>
-      <button onclick="hideQuestions()">100</button>
-      <div id = "question">Who is the CEO of youtube?</div>
-      <button onclick="hideQuestions()">100</button>
-      <div id = "question">G</div>
-      <button onclick="hideQuestions()">100</button>
-      <div id = "question">R</div>
-      <button onclick="hideQuestions()">100</button>
-      <div id = "question">S</div>
-      <button onclick="hideQuestions()">100</button>
-      <div id = "question">What is the name given to the image of an old man grinning nervously?</div>
-      <button onclick="hideQuestions()">100</button>
-      <div id = "question">C</div>  
-      <button onclick="hideQuestions()">100</button>
-      <div id = "question">G</div>
-      <button onclick="hideQuestions()">100</button>
-      <div id = "question">R</div>
-      <button onclick="hideQuestions()">100</button>
-      <div id = "question">S</div>  
-      <button onclick="hideQuestions()">100</button>
-      <div id = "question">I</div>
-      <button onclick="hideQuestions()">100</button>
       <div id = "question">C</div>
-      <button onclick="hideQuestions()">100</button>
       <div id = "question">G</div>
-      <button onclick="hideQuestions()">100</button>
+      <div id = "question">R</div>
+      <div id = "question">S</div>
+      <div id = "question">What is the name given to the image of an old man grinning nervously?</div>
+      <div id = "question">C</div>  
+      <div id = "question">G</div>
+      <div id = "question">R</div>
+      <div id = "question">S</div>  
+      <div id = "question">I</div>
+      <div id = "question">C</div>
+      <div id = "question">G</div>
       <div id = "question">What is the name of the Californian company that makes dangerous art shows using robotics?</div>
     </div>
     <div>
@@ -81,12 +52,15 @@
     </div>
     <div>
       <form>
-        <label for="team1">Team 1 score:</label><br>
-        <input type="text" id="team1" name="team1"><br>
-        <label for="team2">Team 2 score:</label><br>
-        <input type="text" id="team2" name="team2">
+        <label for="score1">Team 1 score:</label><br>
+        <input type="text" id="score1" name="score1"><br>
+        <label for="score2">Team 2 score:</label><br>
+        <input type="text" id="score2" name="score2">
+        <button type="button" onclick="scoreBoard()">Submit</button>
+        <p id="demo">
       </form>
     </div>
     <script type="module" src="/src/main.jsx"></script>
+    <script src="{% static "build/react.js" %}"></script>
   </body>
 </html>
