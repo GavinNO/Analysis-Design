@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./App.css";
+import GameBoard from "./components/GameBoard";
+import ScoreBoard from "./components/ScoreBoard";
 
 const categories = [
   "Social Media",
@@ -93,79 +95,30 @@ function App() {
         </p>
       </header>
 
-      <section className="game-board">
-        {categories.map((category, index) => (
-          <div className="category-card" key={index}>
-            {category}
-          </div>
-        ))}
-
-        {questions.map((question, index) => {
-          const rowNumber = Math.floor(index / 5);
-          const pointValue = (rowNumber + 1) * 100;
-
-          return (
-            <button
-              className={
-                revealedQuestions[index]
-                  ? "question-card revealed"
-                  : "question-card"
-              }
-              key={index}
-              onClick={() => showQuestion(index)}
-              onDoubleClick={() => hideQuestion(index)}
-            >
-              {revealedQuestions[index] ? question : pointValue}
-            </button>
-          );
-        })}
-      </section>
+      <GameBoard
+        categories={categories}
+        questions={questions}
+        revealedQuestions={revealedQuestions}
+        showQuestion={showQuestion}
+        hideQuestion={hideQuestion}
+      />
 
       <div className="board-controls">
         <button onClick={resetBoard}>Reset Board</button>
       </div>
 
-      <section className="scoreboard">
-        <div className="team-card">
-          <h2>{teamOneName || "Team 1"}</h2>
-
-          <label>Team 1 Name</label>
-          <input
-            type="text"
-            value={teamOneName}
-            onChange={(event) => setTeamOneName(event.target.value)}
-            placeholder="Enter team name"
-          />
-
-          <p className="score">{teamOneScore}</p>
-
-          <div className="score-buttons">
-            <button onClick={() => addPoints(1, 100)}>+100</button>
-            <button onClick={() => subtractPoints(1, 100)}>-100</button>
-            <button onClick={() => setTeamOneScore(0)}>Reset</button>
-          </div>
-        </div>
-
-        <div className="team-card">
-          <h2>{teamTwoName || "Team 2"}</h2>
-
-          <label>Team 2 Name</label>
-          <input
-            type="text"
-            value={teamTwoName}
-            onChange={(event) => setTeamTwoName(event.target.value)}
-            placeholder="Enter team name"
-          />
-
-          <p className="score">{teamTwoScore}</p>
-
-          <div className="score-buttons">
-            <button onClick={() => addPoints(2, 100)}>+100</button>
-            <button onClick={() => subtractPoints(2, 100)}>-100</button>
-            <button onClick={() => setTeamTwoScore(0)}>Reset</button>
-          </div>
-        </div>
-      </section>
+      <ScoreBoard
+        teamOneName={teamOneName}
+        setTeamOneName={setTeamOneName}
+        teamTwoName={teamTwoName}
+        setTeamTwoName={setTeamTwoName}
+        teamOneScore={teamOneScore}
+        teamTwoScore={teamTwoScore}
+        addPoints={addPoints}
+        subtractPoints={subtractPoints}
+        setTeamOneScore={setTeamOneScore}
+        setTeamTwoScore={setTeamTwoScore}
+      />
     </div>
   );
 }
