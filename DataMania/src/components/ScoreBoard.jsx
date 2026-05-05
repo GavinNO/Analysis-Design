@@ -1,48 +1,44 @@
 function ScoreBoard({
-  teamOneName,
-  setTeamOneName,
-  teamTwoName,
-  setTeamTwoName,
-  teamOneScore,
-  teamTwoScore,
-  addPoints,
-  subtractPoints,
-  setTeamOneScore,
-  setTeamTwoScore,
+  teams,
+  addTeam,
+  removeTeam,
+  updateScore,
+  updateName,
 }) {
   return (
     <section className="scoreboard">
-      <div className="team-card">
-        <h2>{teamOneName || "Team 1"}</h2>
+      {teams.map((team, index) => (
+        <div className="team-card" key={index}>
+          <h2>{team.name || `Team ${index + 1}`}</h2>
 
-        <input
-          type="text"
-          value={teamOneName}
-          onChange={(e) => setTeamOneName(e.target.value)}
-        />
+          <input
+            type="text"
+            value={team.name}
+            onChange={(e) => updateName(index, e.target.value)}
+            placeholder={`Team ${index + 1}`}
+          />
 
-        <p>{teamOneScore}</p>
+          <p>{team.score}</p>
 
-        <button onClick={() => addPoints(1, 100)}>+100</button>
-        <button onClick={() => subtractPoints(1, 100)}>-100</button>
-        <button onClick={() => setTeamOneScore(0)}>Reset</button>
-      </div>
+          <div className="score-buttons">
+            <button onClick={() => updateScore(index, 100)}>+100</button>
+            <button onClick={() => updateScore(index, -100)}>-100</button>
+            <button onClick={() => updateScore(index, -team.score)}>
+              Reset
+            </button>
+          </div>
 
-      <div className="team-card">
-        <h2>{teamTwoName || "Team 2"}</h2>
+          {/* Optional: remove team button */}
+          {teams.length > 2 && (
+            <button onClick={() => removeTeam(index)}>Remove</button>
+          )}
+        </div>
+      ))}
 
-        <input
-          type="text"
-          value={teamTwoName}
-          onChange={(e) => setTeamTwoName(e.target.value)}
-        />
-
-        <p>{teamTwoScore}</p>
-
-        <button onClick={() => addPoints(2, 100)}>+100</button>
-        <button onClick={() => subtractPoints(2, 100)}>-100</button>
-        <button onClick={() => setTeamTwoScore(0)}>Reset</button>
-      </div>
+      {/* Add team button */}
+      {teams.length < 4 && (
+        <button onClick={addTeam}>Add Team</button>
+      )}
     </section>
   );
 }

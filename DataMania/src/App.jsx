@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import GameBoard from "./components/GameBoard";
 import ScoreBoard from "./components/ScoreBoard";
+import useTeams from "./hooks/TeamManager";
 
 const categories = [
   "Social Media",
@@ -44,6 +45,14 @@ const questions = [
 ];
 
 function App() {
+  const {
+    teams,
+    addTeam,
+    removeTeam,
+    updateScore,
+    updateName,
+  } = useTeams();
+
   const [revealedQuestions, setRevealedQuestions] = useState(
     Array(questions.length).fill(false)
   );
@@ -108,16 +117,11 @@ function App() {
       </div>
 
       <ScoreBoard
-        teamOneName={teamOneName}
-        setTeamOneName={setTeamOneName}
-        teamTwoName={teamTwoName}
-        setTeamTwoName={setTeamTwoName}
-        teamOneScore={teamOneScore}
-        teamTwoScore={teamTwoScore}
-        addPoints={addPoints}
-        subtractPoints={subtractPoints}
-        setTeamOneScore={setTeamOneScore}
-        setTeamTwoScore={setTeamTwoScore}
+        teams={teams}
+        addTeam={addTeam}
+        removeTeam={removeTeam}
+        updateScore={updateScore}
+        updateName={updateName}
       />
     </div>
   );
