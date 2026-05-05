@@ -1,37 +1,51 @@
-function GameBoard({
-  categories,
-  questions,
-  revealedQuestions,
-  showQuestion,
-  hideQuestion,
-}) {
+import { useState } from "react";
+
+function GameBoard({ data }) {
+  if (!data || Object.keys(data).length === 0) {
+    return <div>Board failed to load. Refresh.</div>;
+  }
+
+  const [revealed, setRevealed] = useState({});
+
+  function toggleReveal(key) {
+    setRevealed(prev => ({
+      ...prev,
+      [key]: !prev[key]
+    }));
+  }
+
   return (
     <section className="game-board">
-      {categories.map((category, index) => (
-        <div className="category-card" key={index}>
+
+      {/* Categories */}
+      {Object.keys(data).map(category => (
+        <div className="category-card" key={category}>
           {category}
         </div>
       ))}
 
-      {questions.map((question, index) => {
-        const rowNumber = Math.floor(index / 5);
-        const pointValue = (rowNumber + 1) * 100;
+      {/* Questions */}
+      {[0, 1, 2, 3, 4].map(row =>
+        Object.entries(data).map(([category, questions], colIndex) => {
+          const q = questions[row];
 
-        return (
-          <button
-            className={
-              revealedQuestions[index]
-                ? "question-card revealed"
-                : "question-card"
-            }
-            key={index}
-            onClick={() => showQuestion(index)}
-            onDoubleClick={() => hideQuestion(index)}
-          >
-            {revealedQuestions[index] ? question : pointValue}
-          </button>
-        );
-      })}
+          if (!q) return null;
+
+          const key = `${category}-${row}`;
+          const isRevealed = revealed[key];
+
+          return (
+            <button
+              key={key}
+              className={`question-card ${isRevealed ? "revealed" : ""}`}
+              onClick={() => toggleReveal(key)}
+            >
+              {isRevealed ? q.question : q.value}
+            </button>
+          );
+        })
+      )}
+
     </section>
   );
 }

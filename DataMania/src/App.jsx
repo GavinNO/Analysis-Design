@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import GameBoard from "./components/GameBoard";
 import ScoreBoard from "./components/ScoreBoard";
@@ -7,7 +7,7 @@ import useTeams from "./hooks/TeamManager";
 const categories = [
   "Social Media",
   "Internet Memes",
-  "Incorporated",
+  "CEOs",
   "Gaming",
   "Devices",
 ];
@@ -44,6 +44,41 @@ const questions = [
   "What is the name of the Californian company that makes dangerous art shows using robotics?",
 ];
 
+function parseQuestions(text) {
+  const lines = text.split("\n");
+
+  const data = {};
+  let currentCategory = "";
+
+  lines.forEach(line => {
+    const trimmed = line.trim();
+
+    if (!trimmed) return;
+
+    // Detect category
+    if (trimmed.startsWith("CATEGORY:")) {
+      currentCategory = trimmed.replace("CATEGORY:", "").trim();
+      data[currentCategory] = [];
+      return;
+    }
+
+    // Detect question line: "100 - Question text"
+    const match = trimmed.match(/^(\d+)\s*-\s*(.+)$/);
+
+    if (match && currentCategory) {
+      const value = Number(match[1]);
+      const question = match[2];
+
+      data[currentCategory].push({
+        value,
+        question,
+      });
+    }
+  });
+
+  return data;
+}
+
 function App() {
   const {
     teams,
@@ -53,45 +88,19 @@ function App() {
     updateName,
   } = useTeams();
 
-  const [revealedQuestions, setRevealedQuestions] = useState(
-    Array(questions.length).fill(false)
-  );
+  const [gameData, setGameData] = useState({});
 
-  const [teamOneName, setTeamOneName] = useState("");
-  const [teamTwoName, setTeamTwoName] = useState("");
-  const [teamOneScore, setTeamOneScore] = useState(0);
-  const [teamTwoScore, setTeamTwoScore] = useState(0);
-
-  function showQuestion(index) {
-    const updatedQuestions = [...revealedQuestions];
-    updatedQuestions[index] = true;
-    setRevealedQuestions(updatedQuestions);
-  }
-
-  function hideQuestion(index) {
-    const updatedQuestions = [...revealedQuestions];
-    updatedQuestions[index] = false;
-    setRevealedQuestions(updatedQuestions);
-  }
+  useEffect(() => {
+    fetch("/Game1.txt")
+      .then(res => res.text())
+      .then(text => {
+        const parsed = parseQuestions(text);
+        setGameData(parsed);
+      });
+  }, []);
 
   function resetBoard() {
     setRevealedQuestions(Array(questions.length).fill(false));
-  }
-
-  function addPoints(teamNumber, amount) {
-    if (teamNumber === 1) {
-      setTeamOneScore(teamOneScore + amount);
-    } else {
-      setTeamTwoScore(teamTwoScore + amount);
-    }
-  }
-
-  function subtractPoints(teamNumber, amount) {
-    if (teamNumber === 1) {
-      setTeamOneScore(teamOneScore - amount);
-    } else {
-      setTeamTwoScore(teamTwoScore - amount);
-    }
   }
 
   return (
@@ -104,13 +113,7 @@ function App() {
         </p>
       </header>
 
-      <GameBoard
-        categories={categories}
-        questions={questions}
-        revealedQuestions={revealedQuestions}
-        showQuestion={showQuestion}
-        hideQuestion={hideQuestion}
-      />
+      <GameBoard data={gameData}/>
 
       <div className="board-controls">
         <button onClick={resetBoard}>Reset Board</button>
