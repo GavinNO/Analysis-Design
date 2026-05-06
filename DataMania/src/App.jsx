@@ -69,11 +69,6 @@ function App() {
       });
   }, []);
 
-  // Logic to reset the board when pressed
-  function resetBoard() {
-    setRevealedQuestions(Array(questions.length).fill(false));
-  }
-
   // Display the web app
   return (
     <div className="app">
