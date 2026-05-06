@@ -145,6 +145,8 @@ Brandt Murphy
 
 ## Course
 
+Wayne State College<br>
+Dr. Garvin<br>
 CIS/CSC 480 – Senior Seminar<br>
 Spring 2026
 
