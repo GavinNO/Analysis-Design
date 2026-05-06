@@ -88,6 +88,13 @@ button {
   font-weight: normal;
 }
 
+.question-card.used {
+  background: #444;
+  color: #999;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .board-controls {
   text-align: center;
   margin: 25px 0;
@@ -163,6 +170,19 @@ button {
 
 .score-buttons button:hover {
   background: #006ee6;
+}
+
+.active-question {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #101820;
+  border: 3px solid #f2c94c;
+  padding: 30px;
+  width: 60%;
+  text-align: center;
+  z-index: 999;
 }
 
 @media (max-width: 900px) {

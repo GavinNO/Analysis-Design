@@ -85,7 +85,11 @@ function App() {
         </p>
       </header>
 
-      <GameBoard data={gameData}/>
+      <GameBoard 
+        data={gameData}
+        teams={teams}  
+        updateScore={updateScore}
+      />
 
       <div className="board-controls">
         <button onClick={resetBoard}>Reset Board</button>

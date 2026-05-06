@@ -1,3 +1,4 @@
+// Handler for the scoreboard at the bottom of the screen
 function ScoreBoard({
   teams,
   addTeam,
@@ -5,12 +6,16 @@ function ScoreBoard({
   updateScore,
   updateName,
 }) {
+  /*****************************************
+   * The user interface for tracking score 
+   *****************************************/
   return (
     <section className="scoreboard">
       {teams.map((team, index) => (
         <div className="team-card" key={index}>
           <h2>{team.name || `Team ${index + 1}`}</h2>
 
+          {/* Text box for customizable team names */}
           <input
             type="text"
             value={team.name}
@@ -20,6 +25,7 @@ function ScoreBoard({
 
           <p>{team.score}</p>
 
+          {/* Buttons to add and subtract scores */}
           <div className="score-buttons">
             <button onClick={() => updateScore(index, 100)}>+100</button>
             <button onClick={() => updateScore(index, -100)}>-100</button>
@@ -28,7 +34,7 @@ function ScoreBoard({
             </button>
           </div>
 
-          {/* Optional: remove team button */}
+          {/* Remove team button */}
           {teams.length > 2 && (
             <button onClick={() => removeTeam(index)}>Remove</button>
           )}
