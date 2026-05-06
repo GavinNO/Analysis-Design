@@ -31,6 +31,8 @@ Designed for classroom use, game nights, presentations, or club events, DataMani
     - Resets all gameplay state
     - Preserves team names and scores
 
+---
+
 ## Project Structure
 
 ```bash
@@ -72,6 +74,8 @@ Formatting rules:
 - Use "value - question" format for each question
 - Each category should have 5 questions for proper alignment
 
+---
+
 ## How the Game Works
 
 - Players select a question by point value
@@ -99,9 +103,9 @@ Once npm is installed, run this command in the terminal:
 npm run dev
 ```
 
-Resolve any issues, then open in browser:
+Resolve any issues, then [open in browser](http://localhost:5173)
 
-[Open in browser](http://localhost:5173)
+http://localhost:5173
 
 Further troubleshooting is located toward the end of this document
 
@@ -133,15 +137,15 @@ Further troubleshooting is located toward the end of this document
 
 ## Authors
 
-Gavin Olinger
-Aaron Ford
-Taona Makolija
-Kylian James
+Gavin Olinger \n
+Aaron Ford \n
+Taona Makolija \n
+Kylian James \n
 Brandt Murphy
 
 ## Course
 
-CIS/CSC 480 – Senior Seminar
+CIS/CSC 480 – Senior Seminar \n
 Spring 2026
 
 ---
