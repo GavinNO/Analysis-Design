@@ -91,10 +91,6 @@ function App() {
         updateScore={updateScore}
       />
 
-      <div className="board-controls">
-        <button onClick={resetBoard}>Reset Board</button>
-      </div>
-
       <ScoreBoard
         teams={teams}
         addTeam={addTeam}

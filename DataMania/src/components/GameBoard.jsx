@@ -51,6 +51,14 @@ function GameBoard({ data, teams, updateScore }) {
     setCurrentTeam(next);
   }
 
+  // Logic for resetting the board
+  function resetBoard() {
+    setActiveQuestion(null);
+    setWrongTeams([]);
+    setUsedQuestions({});
+    setCurrentTeam(0);
+  }
+
   /*********************
   * The user interface
   **********************/
@@ -112,6 +120,12 @@ function GameBoard({ data, teams, updateScore }) {
         )}
 
       </section>
+
+      <div className="board-controls">
+        <button onClick={resetBoard}>
+          Reset Board
+        </button>
+      </div>
 
       {/* Button that shows the active question */}
       {activeQuestion && (
