@@ -137,15 +137,15 @@ Further troubleshooting is located toward the end of this document
 
 ## Authors
 
-Gavin Olinger \n
-Aaron Ford \n
-Taona Makolija \n
-Kylian James \n
+Gavin Olinger /n
+Aaron Ford /n
+Taona Makolija /n
+Kylian James /n
 Brandt Murphy
 
 ## Course
 
-CIS/CSC 480 – Senior Seminar \n
+CIS/CSC 480 – Senior Seminar /n
 Spring 2026
 
 ---
